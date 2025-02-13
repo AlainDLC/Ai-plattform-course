@@ -31,5 +31,5 @@ MIT License. Feel free to use and contribute!
 
 ---
 ### 📬 Contact
-For collaboration, ideas, or just to chat, send me a DM!
+For collaboration, ideas, or just to chat, send me a DM! https://www.linkedin.com/in/alain-de-la-cuadra/
 
