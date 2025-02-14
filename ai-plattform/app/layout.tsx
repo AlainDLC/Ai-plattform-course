@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { HeroUIProvider } from "@heroui/react";
+import Provider from "./provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ClerkProvider>
-          <HeroUIProvider>{children}</HeroUIProvider>
+          <HeroUIProvider>
+            <Provider>{children}</Provider>
+          </HeroUIProvider>
         </ClerkProvider>
       </body>
     </html>

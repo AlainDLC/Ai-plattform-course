@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 
 export default function Home() {
-  return <Button className="bg-primary rounded-lg shadow-lg">KING</Button>;
+  return (
+    <div>
+      <h2>KING</h2>
+      <UserButton />
+    </div>
+  );
 }
