@@ -20,7 +20,6 @@ function Provider({ children }: ProviderProps) {
   const CheckIsNewUser = async () => {
     try {
       const resp = await axios.post("/api/create-user", { user: user });
-      console.log(resp?.data);
     } catch (error) {}
   };
   return <div>{children}</div>;
