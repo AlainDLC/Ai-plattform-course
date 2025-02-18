@@ -43,12 +43,14 @@ function SideBar() {
         <h2 className="font-bold text-lg">Ai Study </h2>
       </div>
       <div className="mt-10">
-        <Button
-          color="primary"
-          className="rounded-xl text-slate-700 w-full transition duration-300 ease-in-out transform hover:scale-105"
-        >
-          + Create New
-        </Button>
+        <Link href="/create">
+          <Button
+            color="primary"
+            className="rounded-xl text-slate-700 w-full transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            + Create New
+          </Button>
+        </Link>
         {MenyList.map((menu, index) => (
           <div
             key={index}

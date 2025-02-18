@@ -4,7 +4,7 @@ import { FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa";
 function DashBoardHeader() {
   return (
     <>
-      <div className=" p-5 shadow-md flex justify-end gap-3 items-center">
+      <div className=" p-5 shadow-sm flex justify-end gap-3 items-center">
         <a
           href="https://www.instagram.com"
           target="_blank"
