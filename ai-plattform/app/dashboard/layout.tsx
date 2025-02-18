@@ -14,7 +14,7 @@ function DashBoardLayout({ children }: DashBoardLayoutProps) {
       </div>
       <div className="md:ml-64">
         <DashBoardHeader />
-        <div className="p-5">{children}</div>
+        <div className="p-10">{children}</div>
       </div>
     </div>
   );
