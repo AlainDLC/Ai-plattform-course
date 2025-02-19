@@ -26,13 +26,13 @@ function TopicInput({ setTopic, setDifficultyLevel }: TopicInputProps) {
         }}
       >
         <SelectSection title="Difficulty Levels">
-          <SelectItem key="beginner" value="Beginner">
+          <SelectItem key="Beginner" value="Beginner">
             Beginner
           </SelectItem>
-          <SelectItem key="intermediate" value="Intermediate">
+          <SelectItem key="Intermediate" value="Intermediate">
             Intermediate
           </SelectItem>
-          <SelectItem key="advanced" value="Advanced">
+          <SelectItem key="Advanced" value="Advanced">
             Advanced
           </SelectItem>
         </SelectSection>

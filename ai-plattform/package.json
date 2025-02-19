@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.11.3",
+    "@google/generative-ai": "^0.21.0",
     "@heroui/button": "^2.2.10",
     "@heroui/input": "^2.4.10",
     "@heroui/progress": "^2.2.7",
@@ -32,7 +33,8 @@
     "react-dom": "^18.0.0",
     "react-icons": "^5.4.0",
     "tailwind-merge": "^3.0.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^11.0.5"
   },
   "devDependencies": {
     "@types/node": "^20",
