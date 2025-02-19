@@ -7,11 +7,15 @@ import DashBoardHeader from "../dashboard/_components/DashBoardHeader";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useUser } from "@clerk/nextjs";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 function Create() {
   const { user } = useUser();
+  const [loading, setIsloading] = useState<boolean>(false);
   const [formData, setFormData] = useState<any[]>([]);
   const [step, setStep] = useState<number>(0);
+  const router = useRouter();
   const handleUserInput = (fieldName: string, fieldValue: any) => {
     setFormData((prev) => ({
       ...prev,
@@ -23,6 +27,7 @@ function Create() {
 
   const GenerateCourseOutLine = async () => {
     const courseId = uuidv4();
+    setIsloading(true);
     try {
       const result = await axios.post("/api/generate-course-outline", {
         courseId: courseId,
@@ -30,9 +35,14 @@ function Create() {
         createdBy: user?.primaryEmailAddress?.emailAddress,
       });
 
-      console.log(result);
+      console.log(result?.data?.result);
+
+      setIsloading(false);
+      router.replace("/dashboard");
     } catch (err) {
-      console.error(err);
+      console.error("smäller kolla GenerateCourseOutLine ", err);
+    } finally {
+      setIsloading(false);
     }
   };
   return (
@@ -86,8 +96,9 @@ function Create() {
               color="primary"
               className="text-white"
               onPress={GenerateCourseOutLine}
+              disabled={loading}
             >
-              Generate
+              {loading ? <Loader2 className="animate-spin" /> : "Generate"}
             </Button>
           )}
         </div>

@@ -45,6 +45,7 @@ function SideBar() {
       <div className="mt-10">
         <Link href="/create">
           <Button
+            aria-label="Create a new study material"
             color="primary"
             className="rounded-xl text-slate-700 w-full transition duration-300 ease-in-out transform hover:scale-105"
           >
@@ -64,7 +65,7 @@ function SideBar() {
       </div>
       <div className="border p-3 bg-slate-50 rounded-lg absolute bottom-10 w-[86%]">
         <h2 className="text-lg mb-2">Credits: 5</h2>
-        <Progress value={30} />
+        <Progress value={30} aria-label="Progress bar showing 30% completion" />
         <h2 className="text-sm mt-1">1 Out 5 Credits used</h2>
         <Link href={"/dashboard/upgrade"} className="text-primary text-sm">
           Upgrade to create more

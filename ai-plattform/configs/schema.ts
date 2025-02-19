@@ -15,4 +15,5 @@ export const STUDY_TABLE = pgTable("study", {
   difficultyLevel: varchar().default("Beginner"),
   courseLayOut: json(),
   createdBy: varchar().notNull(),
+  status: varchar().default("Generating"),
 });
