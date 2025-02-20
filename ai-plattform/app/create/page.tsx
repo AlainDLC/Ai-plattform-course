@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useUser } from "@clerk/nextjs";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 function Create() {
   const { user } = useUser();
@@ -39,6 +40,7 @@ function Create() {
 
       setIsloading(false);
       router.replace("/dashboard");
+      toast("Lets go Click refresh button");
     } catch (err) {
       console.error("smäller kolla GenerateCourseOutLine ", err);
     } finally {

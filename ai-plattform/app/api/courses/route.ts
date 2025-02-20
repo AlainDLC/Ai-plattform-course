@@ -1,6 +1,6 @@
 import { db } from "@/configs/db";
 import { STUDY_TABLE } from "@/configs/schema";
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 
 import { NextResponse } from "next/server";
 
@@ -18,7 +18,8 @@ export async function POST(req: Request) {
     const result = await db
       .select()
       .from(STUDY_TABLE)
-      .where(eq(STUDY_TABLE.createdBy, createdBy));
+      .where(eq(STUDY_TABLE.createdBy, createdBy))
+      .orderBy(desc(STUDY_TABLE.id));
 
     return NextResponse.json(result);
   } catch (err) {

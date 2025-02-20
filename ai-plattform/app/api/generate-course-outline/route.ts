@@ -1,6 +1,7 @@
 import { courseOutLineAIModel } from "@/configs/AIModel";
 import { db } from "@/configs/db";
 import { STUDY_TABLE } from "@/configs/schema";
+import { inngest } from "@/inngest/client";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -32,8 +33,14 @@ export async function POST(req: Request) {
       courseLayOut: aiResult,
     })
     .returning();
+  const result = await inngest.send({
+    name: "notes.generate",
+    data: {
+      course: dbResult[0],
+    },
+  });
 
-  console.log(dbResult);
+  console.log(result);
 
   return NextResponse.json({ result: dbResult[0] });
 }

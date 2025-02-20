@@ -41,5 +41,24 @@ export const courseOutLineAIModel = model.startChat({
   ],
 });
 
-/*const result = await courseOutLine.sendMessage("INSERT_INPUT_HERE");
-console.log(result.response.text());*/
+export const generateNotesAIModel = model.startChat({
+  generationConfig,
+  history: [
+    {
+      role: "user",
+      parts: [
+        {
+          text: 'Generate exam material detail for each chapter, Make sure to includes all topic point in the content, make sure to give content in HTML format (Do not Add HTMLKL,Head,Body,title tag),\nThe chapters: {\n      "chapterTitle": "Introduction to JavaScript",\n      "chapterSummary": "This chapter introduces JavaScript, its uses, and setting up your environment for development.",\n      "topics": [\n        "What is JavaScript?",\n        "Where JavaScript is used (web browsers, servers, etc.)",\n        "Setting up a development environment (text editors, browsers)",\n        "Basic syntax (variables, comments)",\n        "Running JavaScript code (using a browser\'s console, embedding in HTML)"\n      ]  \n',
+        },
+      ],
+    },
+    {
+      role: "model",
+      parts: [
+        {
+          text: "\n<h3>Introduction to JavaScript</h3>\n<p>This chapter introduces JavaScript, its uses, and setting up your environment for development.</p>\n\n<h4>What is JavaScript?</h4>\n<p>Describe JavaScript: its purpose, nature as a scripting language, and its role in web development and beyond.</p>\n\n<h4>Where JavaScript is Used</h4>\n<ul>\n  <li>Web Browsers: Explain how JavaScript enhances interactivity and dynamic behavior in web pages.</li>\n  <li>Servers (Node.js): Briefly introduce server-side JavaScript and its applications.</li>\n  <li>Mobile Apps (React Native, Ionic): Mention the use of JavaScript in building mobile applications.</li>\n  <li>Other Applications: Briefly touch upon other areas where JavaScript finds use (e.g., game development, desktop applications).</li>\n</ul>\n\n<h4>Setting up a Development Environment</h4>\n<ul>\n  <li>Text Editors: Discuss the benefits of using a code editor (mention popular choices like VS Code, Sublime Text, Atom).</li>\n  <li>Browsers: Explain the role of web browsers in executing JavaScript code.</li>\n  <li>Browser Developer Tools: Introduce the browser's developer tools (console, debugger) and their importance in development.</li>\n  <li>Optional: Setting up a local web server (e.g., using Python's SimpleHTTPServer or similar).</li>\n</ul>\n\n<h4>Basic Syntax</h4>\n<ul>\n  <li>Variables: Explain variable declaration (<code>var</code>, <code>let</code>, <code>const</code>), data types (numbers, strings, booleans), and variable naming conventions.</li>\n  <li>Comments: Describe the purpose of comments (single-line and multi-line) and their importance in code readability.</li>\n</ul>\n\n<h4>Running JavaScript Code</h4>\n<ul>\n  <li>Browser's Console:  Show how to open the browser's console and execute simple JavaScript commands.</li>\n  <li>Embedding in HTML: Explain how to include JavaScript code within an HTML file using <code>&lt;script&gt;</code> tags, both in the <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> sections.  Discuss internal vs. external scripts.</li>\n</ul>\n\n",
+        },
+      ],
+    },
+  ],
+});
