@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     courseType +
     " and level of difficulty will be " +
     difficultyLevel +
-    " with summary of course, List of Chapters along with summary for each chapter, Topic list in each chapter in JSON format";
+    " with summary of course, List of Chapters (Max 3) along with summary and Emoji icon for each chapter, Topic list in each chapter in JSON format";
 
   const aiResp = await courseOutLineAIModel.sendMessage(PROMT);
   console.log("AI Response:", aiResp);

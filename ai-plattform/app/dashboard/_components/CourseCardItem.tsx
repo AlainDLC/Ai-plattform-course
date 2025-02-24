@@ -4,21 +4,10 @@ import { Button } from "@heroui/button";
 import { Progress } from "@heroui/progress";
 import { RefreshCwIcon } from "lucide-react";
 import Image from "next/image";
+import { Course } from "../types/course";
+import Link from "next/link";
 
-export interface Course {
-  courseTitle: string;
-  courseSummary: string;
-  chapters: Chapter[];
-  status?: string;
-}
-
-interface Chapter {
-  chapterTitle: string;
-  chapterSummary: string;
-  topics: string[];
-}
-
-function CourseCardItem({ course }: any) {
+function CourseCardItem({ course }: { course: Course }) {
   console.log(course);
 
   return (
@@ -44,9 +33,11 @@ function CourseCardItem({ course }: any) {
               AI magic render...
             </h2>
           ) : (
-            <Button color="primary" aria-label="Click">
-              View
-            </Button>
+            <Link href={`/course/${course?.courseId}`}>
+              <Button color="primary" aria-label="Click">
+                View
+              </Button>
+            </Link>
           )}
         </div>
       </div>

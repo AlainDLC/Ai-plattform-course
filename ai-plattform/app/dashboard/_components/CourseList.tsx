@@ -2,9 +2,10 @@
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import CourseCardItem, { Course } from "./CourseCardItem";
+import CourseCardItem from "./CourseCardItem";
 import { Button } from "@heroui/button";
 import { RefreshCw } from "lucide-react";
+import { Course } from "../types/course";
 
 function CourseList() {
   const [courseList, setCourseList] = useState<Course[]>([]);
