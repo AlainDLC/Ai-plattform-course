@@ -29,10 +29,9 @@ function Course() {
   };
   return (
     <div>
-      <DashBoardHeader />
-      <div className="mt-10 md:mx-36 lg:60 ">
+      <div>
         <CourseIntroCard course={course} />
-        <StudyMaterialSection />
+        <StudyMaterialSection courseId={courseId} course={course} />
         <ChapterList course={course} />
       </div>
     </div>

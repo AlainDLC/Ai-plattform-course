@@ -3,10 +3,14 @@ import { inngest } from "./client";
 import {
   CHAPTER_NOTES_TABLES,
   STUDY_TABLE,
+  STUDY_TYPE_CONTENT_TABLE,
   USER_TABLE,
 } from "@/configs/schema";
-import { eq } from "drizzle-orm";
-import { generateNotesAIModel } from "@/configs/AIModel";
+import { and, eq } from "drizzle-orm";
+import {
+  generateNotesAIModel,
+  generateStudyTypeContentAIModel,
+} from "@/configs/AIModel";
 
 export const CreateNewUser = inngest.createFunction(
   { id: "create-user" },
@@ -85,6 +89,39 @@ export const GenerateNotes = inngest.createFunction(
       );
     } catch (err) {
       console.error("GenerateNotes", err);
+    }
+  }
+);
+
+export const GenerateStudyTypeContent = inngest.createFunction(
+  { id: "Generate Study Type Content" },
+  { event: "studyType.content" },
+
+  async ({ event, step }) => {
+    try {
+      const { studyType, promt, courseId, recordId } = event.data;
+      const FlashCardAiResult = await step.run(
+        "Generating FlashCard using Ai",
+        async () => {
+          const result = await generateStudyTypeContentAIModel.sendMessage(
+            promt
+          );
+          const AIresult = JSON.parse(result.response.text());
+          return AIresult;
+        }
+      );
+      const DbResult = await step.run("Save Result to Database", async () => {
+        const result = await db
+          .update(STUDY_TYPE_CONTENT_TABLE)
+          .set({
+            content: FlashCardAiResult,
+          })
+          .where(and(eq(STUDY_TYPE_CONTENT_TABLE.id, recordId)));
+
+        return "Db insert Success";
+      });
+    } catch (err) {
+      console.log("GenerateStudyTypeContent", err);
     }
   }
 );

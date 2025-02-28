@@ -19,6 +19,13 @@ const generationConfig = {
   responseMimeType: "application/json",
 };
 
+const generationConfig2 = {
+  temperature: 1,
+  topP: 0.95,
+  topK: 40,
+  maxOutputTokens: 8192,
+  responseMimeType: "text/plain",
+};
 export const courseOutLineAIModel = model.startChat({
   generationConfig,
   history: [
@@ -42,13 +49,13 @@ export const courseOutLineAIModel = model.startChat({
 });
 
 export const generateNotesAIModel = model.startChat({
-  generationConfig,
+  generationConfig2,
   history: [
     {
       role: "user",
       parts: [
         {
-          text: 'Generate exam material detail for each chapter, Make sure to includes all topic point in the content, make sure to give content in HTML format (Do not Add HTMLKL,Head,Body,title tag),\nThe chapters: {\n      "chapterTitle": "Introduction to JavaScript",\n      "chapterSummary": "This chapter introduces JavaScript, its uses, and setting up your environment for development.",\n      "topics": [\n        "What is JavaScript?",\n        "Where JavaScript is used (web browsers, servers, etc.)",\n        "Setting up a development environment (text editors, browsers)",\n        "Basic syntax (variables, comments)",\n        "Running JavaScript code (using a browser\'s console, embedding in HTML)"\n      ]  \n',
+          text: 'Generate exam material detail for each chapter, Make sure to includes all topic point in the content, make sure to give content in HTML format (Do not Add HTML,Head,Body,title tag),\\nThe chapters: {\\n      "chapterTitle": "Introduction to JavaScript",\\n      "chapterSummary": "This chapter introduces JavaScript, its uses, and setting up your environment for development.",\\n      "topics": [\\n        "What is JavaScript?",\\n        "Where JavaScript is used (web browsers, servers, etc.)",\\n        "Setting up a development environment (text editors, browsers)",\\n        "Basic syntax (variables, comments)",\\n        "Running JavaScript code (using a browser\\\'s console, embedding in HTML)"\\n      ]  \\n\',\n',
         },
       ],
     },
@@ -56,7 +63,29 @@ export const generateNotesAIModel = model.startChat({
       role: "model",
       parts: [
         {
-          text: "\n<h3>Introduction to JavaScript</h3>\n<p>This chapter introduces JavaScript, its uses, and setting up your environment for development.</p>\n\n<h4>What is JavaScript?</h4>\n<p>Describe JavaScript: its purpose, nature as a scripting language, and its role in web development and beyond.</p>\n\n<h4>Where JavaScript is Used</h4>\n<ul>\n  <li>Web Browsers: Explain how JavaScript enhances interactivity and dynamic behavior in web pages.</li>\n  <li>Servers (Node.js): Briefly introduce server-side JavaScript and its applications.</li>\n  <li>Mobile Apps (React Native, Ionic): Mention the use of JavaScript in building mobile applications.</li>\n  <li>Other Applications: Briefly touch upon other areas where JavaScript finds use (e.g., game development, desktop applications).</li>\n</ul>\n\n<h4>Setting up a Development Environment</h4>\n<ul>\n  <li>Text Editors: Discuss the benefits of using a code editor (mention popular choices like VS Code, Sublime Text, Atom).</li>\n  <li>Browsers: Explain the role of web browsers in executing JavaScript code.</li>\n  <li>Browser Developer Tools: Introduce the browser's developer tools (console, debugger) and their importance in development.</li>\n  <li>Optional: Setting up a local web server (e.g., using Python's SimpleHTTPServer or similar).</li>\n</ul>\n\n<h4>Basic Syntax</h4>\n<ul>\n  <li>Variables: Explain variable declaration (<code>var</code>, <code>let</code>, <code>const</code>), data types (numbers, strings, booleans), and variable naming conventions.</li>\n  <li>Comments: Describe the purpose of comments (single-line and multi-line) and their importance in code readability.</li>\n</ul>\n\n<h4>Running JavaScript Code</h4>\n<ul>\n  <li>Browser's Console:  Show how to open the browser's console and execute simple JavaScript commands.</li>\n  <li>Embedding in HTML: Explain how to include JavaScript code within an HTML file using <code>&lt;script&gt;</code> tags, both in the <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> sections.  Discuss internal vs. external scripts.</li>\n</ul>\n\n",
+          text: "```html\n<h3>Chapter 1: Introduction to JavaScript</h3>\n<p><strong>Chapter Summary:</strong> This chapter introduces JavaScript, its uses, and setting up your environment for development.</p>\n\n<h4>Exam Material Details:</h4>\n<ol>\n  <li><strong>What is JavaScript?</strong>\n    <ul>\n      <li>Definition of JavaScript as a programming language.</li>\n      <li>Its role in making websites interactive.</li>\n      <li>Distinction between JavaScript, Java, and other programming languages.</li>\n    </ul>\n  </li>\n  <li><strong>Where JavaScript is used:</strong>\n    <ul>\n      <li>Web browsers (client-side scripting).</li>\n      <li>Servers (Node.js).</li>\n      <li>Mobile applications (React Native, Ionic).</li>\n      <li>Desktop applications (Electron).</li>\n      <li>Games (using frameworks like Phaser).</li>\n    </ul>\n  </li>\n  <li><strong>Setting up a development environment:</strong>\n    <ul>\n      <li>Choosing a suitable text editor or IDE (e.g., VS Code, Sublime Text, Atom).</li>\n      <li>Understanding browser developer tools (console, debugger).</li>\n      <li>Setting up a local web server (optional, but recommended for more advanced projects).</li>\n    </ul>\n  </li>\n  <li><strong>Basic syntax:</strong>\n    <ul>\n      <li>Declaring variables using <code>var</code>, <code>let</code>, and <code>const</code>.</li>\n      <li>Variable naming conventions.</li>\n      <li>Data types (numbers, strings, booleans, null, undefined).</li>\n      <li>Using comments (single-line and multi-line).</li>\n      <li>Basic operators (+, -, *, /, %, etc.).</li>\n    </ul>\n  </li>\n  <li><strong>Running JavaScript code:</strong>\n    <ul>\n      <li>Using the browser's developer console.</li>\n      <li>Embedding JavaScript code within HTML files using <code>&lt;script&gt;</code> tags.</li>\n      <li>External JavaScript files (linking to .js files).</li>\n      <li>Understanding the difference between inline, internal, and external scripts.</li>\n\n    </ul>\n  </li>\n</ol>\n\n```\n",
+        },
+      ],
+    },
+  ],
+});
+
+export const generateStudyTypeContentAIModel = model.startChat({
+  generationConfig,
+  history: [
+    {
+      role: "user",
+      parts: [
+        {
+          text: "Generate the flashcard on topic: React Native Fundamentals, User interface (UI) Development Basic App Navigation in JSON format with front back content, Maximum 15",
+        },
+      ],
+    },
+    {
+      role: "model",
+      parts: [
+        {
+          text: '```json\n[\n  {\n    "front": "What is React Native?",\n    "back": "A JavaScript framework for building native mobile apps for iOS and Android using React."\n  },\n  {\n    "front": "What are JSX and its role in React Native?",\n    "back": "JSX is a syntax extension to JavaScript that allows you to write HTML-like code within your JavaScript. It makes React Native components more readable and intuitive."\n  },\n  {\n    "front": "Explain Components in React Native.",\n    "back": "Building blocks of a React Native app. They encapsulate UI elements and logic, promoting reusability and organization."\n  },\n  {\n    "front": "What is the purpose of `useState` hook?",\n    "back": "To manage state within a functional component. It allows you to track changes and re-render the component when state updates."\n  },\n  {\n    "front": "What is `useEffect` hook used for?",\n    "back": "To perform side effects, like data fetching, subscriptions, and manual DOM manipulation, in functional components."\n  },\n  {\n    "front": "Name three core UI components in React Native.",\n    "back": "View, Text, Image (or similar variations like TouchableOpacity)"\n  },\n  {\n    "front": "How to style components in React Native?",\n    "back": "Using the `style` prop with an object containing CSS-like styles."\n  },\n  {\n    "front": "What is Flexbox and its role in React Native layout?",\n    "back": "A layout system that allows arranging components along a single axis (row or column) or both axes.  It\'s the primary layout system in React Native."\n  },\n  {\n    "front": "What is `navigation` in React Native apps?",\n    "back": "The mechanism for transitioning between different screens or views within the app."\n  },\n  {\n    "front": "Name a popular navigation library for React Native.",\n    "back": "React Navigation (or similar libraries like React Native Navigation)"\n  },\n  {\n    "front": "What is a `StackNavigator` (in React Navigation)?",\n    "back": "A navigator that manages screens in a stack-like manner, allowing users to navigate back and forth between screens."\n  },\n  {\n    "front": "What is a `TabNavigator` (in React Navigation)?",\n    "back": "A navigator that displays multiple screens as tabs at the bottom (or top) of the screen, allowing for easy switching between screens."\n  },\n  {\n    "front": "How to handle user input in React Native?",\n    "back": "Using components like `TextInput`, `Switch`, or similar input components and handling their `onChange` or `onChangeText` events."\n  },\n  {\n    "front": "What is prop drilling?",\n    "back": "Passing props through multiple layers of components, often leading to code complexity and maintainability issues.  Context API is a solution."\n  },\n  {\n    "front": "What is the role of the `key` prop when rendering lists?",\n    "back": "Helps React identify which items have changed, added, or removed efficiently, improving performance and preventing issues with list rendering."\n  }\n]\n```\n',
         },
       ],
     },

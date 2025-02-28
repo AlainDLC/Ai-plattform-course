@@ -5,8 +5,6 @@ import Image from "next/image";
 import React from "react";
 
 function CourseIntroCard({ course }: { course: Course }) {
-  console.log("du är här", course);
-
   return (
     <div className="flex gap-5 items-center border shadow-md p-5 rounded-lg ">
       <Image
