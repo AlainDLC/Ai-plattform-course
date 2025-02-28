@@ -31,7 +31,7 @@ function Course() {
     <div>
       <div>
         <CourseIntroCard course={course} />
-        <StudyMaterialSection courseId={courseId} course={course} />
+        <StudyMaterialSection courseId={courseId as any} course={course} />
         <ChapterList course={course} />
       </div>
     </div>

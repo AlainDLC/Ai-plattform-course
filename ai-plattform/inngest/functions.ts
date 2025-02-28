@@ -115,6 +115,7 @@ export const GenerateStudyTypeContent = inngest.createFunction(
           .update(STUDY_TYPE_CONTENT_TABLE)
           .set({
             content: FlashCardAiResult,
+            status: "Ready",
           })
           .where(and(eq(STUDY_TYPE_CONTENT_TABLE.id, recordId)));
 

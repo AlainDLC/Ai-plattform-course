@@ -19,7 +19,7 @@ function StudyMaterialSection({
   course,
 }: {
   course: Course;
-  courseId: any;
+  courseId: string;
 }) {
   const [studyTypeContent, setStudyTypeContent] = useState<any>();
   const MaterialList: MaterialListProps[] = [
@@ -73,14 +73,13 @@ function StudyMaterialSection({
       <h2 className="font-medium text-2xl">Study Material</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-3">
         {MaterialList.map((item, index) => (
-          <Link key={index} href={"/course/" + courseId + item.path}>
-            <MaterailCardItem
-              key={index}
-              item={item}
-              studyTypeContent={studyTypeContent}
-              course={course as Course}
-            />
-          </Link>
+          <MaterailCardItem
+            key={index}
+            item={item}
+            studyTypeContent={studyTypeContent}
+            course={course}
+            refreshData={GetStudyMaterial}
+          />
         ))}
       </div>
     </div>
