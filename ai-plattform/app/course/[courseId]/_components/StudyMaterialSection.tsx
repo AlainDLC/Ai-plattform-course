@@ -63,8 +63,6 @@ function StudyMaterialSection({
       studyType: "ALL",
     });
 
-    console.log("GetStudyMaterial", result?.data);
-
     setStudyTypeContent(result?.data);
   };
 
